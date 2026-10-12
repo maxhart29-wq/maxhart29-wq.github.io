@@ -6,57 +6,77 @@
     <title>Penguins!</title>
     <style>
         body {
-            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: 'Arial Black', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
+            overflow: hidden;
         }
-        h1 {
-            font-size: 8vw; /* Makes the text scale with the screen size */
-            color: #333;
+
+        #content {
+            display: none; /* Hidden until the user clicks enter */
             text-align: center;
+            font-size: 5rem; /* Makes the text very big */
+            color: #111;
             text-transform: uppercase;
+            animation: bounce 0.5s infinite alternate; /* Adds a fun bouncing effect */
         }
-        .play-btn {
-            padding: 15px 30px;
-            font-size: 20px;
-            cursor: pointer;
-            border: none;
-            background-color: #008CBA;
+
+        #enter-btn {
+            padding: 20px 40px;
+            font-size: 2rem;
+            background-color: #008cba;
             color: white;
-            border-radius: 5px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        #enter-btn:hover {
+            background-color: #007399;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Big Text -->
-    <h1 id="penguinText" style="display:none;">U GOT PENGUINS</h1>
+    <!-- The initial click button to bypass browser audio blocks -->
+    <button id="enter-btn" onclick="startPage()">Click to Enter</button>
 
-    <!-- Interactivity Button (Required by Web Browsers) -->
-    <button id="startBtn" class="play-btn">Click to Enter</button>
+    <!-- The big text container -->
+    <div id="content">
+        u got penguins
+    </div>
 
-    <!-- Hidden MP3 Audio Link -->
-    <!-- REPLACE 'your-audio-file.mp3' WITH THE ACTUAL URL OF YOUR MP3 HOST -->
-    <audio id="bg-Music" src="music.mp3" loop></audio>
+    <!-- The audio element -->
+    <!-- REPLACE 'your-audio-file.mp3' with your actual MP3 link -->
+    <audio id="bg-audio" src="music.mp3" loop></audio>
 
     <script>
-        const startBtn = document.getElementById('startBtn');
-        const penguinText = document.getElementById('penguinText');
-        const bgMusic = document.getElementById('bgMusic');
-
-        startBtn.addEventListener('click', function() {
-            // Play the music
-            bgMusic.play();
+        function startPage() {
+            // Hide the enter button
+            document.getElementById('enter-btn').style.display = 'none';
             
-            // Hide the button and show the big text
-            startBtn.style.display = 'none';
-            penguinText.style.display = 'block';
-        });
+            // Show the big penguin text
+            document.getElementById('content').style.display = 'block';
+            
+            // Play the MP3 audio
+            var audio = document.getElementById('bg-audio');
+            audio.play().catch(function(error) {
+                console.log("Audio playback failed:", error);
+            });
+        }
     </script>
 
 </body>
 </html>
+
