@@ -36,7 +36,10 @@
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-
+        #image {
+            display: none;
+            padding: 50px 50px;
+        }
         #enter-btn:hover {
             background-color: #007399;
         }
@@ -60,12 +63,14 @@
     <!-- The audio element -->
     <!-- REPLACE 'your-audio-file.mp3' with your actual MP3 link -->
     <audio id="bg-audio" src="music.mp3" loop></audio>
-
+    <img id="image" src="image.jpeg">
+        
+    
     <script>
         function startPage() {
             // Hide the enter button
             document.getElementById('enter-btn').style.display = 'none';
-            
+            document.getElementById('image').style.display = 'block'
             // Show the big penguin text
             document.getElementById('content').style.display = 'block';
             
