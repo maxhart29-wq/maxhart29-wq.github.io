@@ -37,6 +37,15 @@
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
+        #skip-btn{
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: black;
+            cursor: pointer;
+            position: fixed;   /* Stays fixed in the screen viewport */
+            bottom: 20px;      /* 20px distance from the bottom */
+            right: 20px;   
+        }
         #image {
             display: none;
             padding: 50px 50px;
@@ -55,7 +64,7 @@
 
     <!-- The initial click button to bypass browser audio blocks -->
     <button id="enter-btn" onclick="startPage()">Click to Enter</button>
-
+    <button id="skip-btn" onclick="skip()">click to skip audio</botton>
     <!-- The big text container -->
     <div id="content">
         🐧u got penguin🐧
@@ -80,7 +89,21 @@
             var audio = document.getElementById('bg-audio');
             audio.play().catch(function(error) {
                 console.log("Audio playback failed:", error);
+            document. getElementById('skip-btn').style.display = 'block'
             });
+        }
+        function skip() {
+             document.getElementById('enter-btn').style.display = 'none';
+            //shows image
+            document.getElementById('image').style.display = 'none'
+            // Show the big penguin text
+            document.getElementById('content').style.display = 'none';
+
+            document.getElementById9('skip-btn').style.display = 'none';
+
+            var audio = document.getElementById('bg-audio');
+            audio.stop().catch(function(error) {
+                console.log("Audio playback failed:", error);
         }
     </script>
 
